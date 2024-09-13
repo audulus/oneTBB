@@ -10,13 +10,15 @@ let package = Package(
     products: [
         .library(
             name: "oneTBB",
-            targets: ["OneTBB", "TBBMalloc", "TBBMallocProxy"])
+
+            // Targets are named this way to get SPM to not think there is an "umbrella header"
+            targets: ["tbb_target", "tbbmalloc_target", "tbbmalloc_proxy_target"])
     ],
     targets: [
         .target(
-            name: "TBBMallocProxy",
+            name: "tbbmalloc_proxy_target",
             dependencies: [
-                .target(name: "OneTBB"),
+                .target(name: "tbb_target"),
             ],
             path: ".",
             exclude: ["src/tbbmalloc_proxy/tbbmalloc_proxy.rc", "src/tbbmalloc_proxy/CMakeLists.txt"],
@@ -29,10 +31,10 @@ let package = Package(
         ),
 
         .target(
-            name: "TBBMalloc",
+            name: "tbbmalloc_target",
             dependencies: [
-                .target(name: "OneTBB"),
-                .target(name: "TBBMallocProxy"),
+                .target(name: "tbb_target"),
+                .target(name: "tbbmalloc_proxy_target"),
             ],
             path: ".",
             exclude: ["src/tbbmalloc/tbbmalloc.rc", "src/tbbmalloc/def", "src/tbbmalloc/CMakeLists.txt"],
@@ -46,7 +48,7 @@ let package = Package(
         ),
 
         .target(
-            name: "OneTBB",
+            name: "tbb_target",
             path: ".",
             exclude: ["src/tbb/tbb.rc", "src/tbb/CMakeLists.txt"],
             sources: ["src/tbb"],
