@@ -2,14 +2,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "tbb",
+    name: "oneTBB",
     defaultLocalization: "en",
     platforms: [
         .macOS(.v11), .iOS(.v13)
     ],
     products: [
         .library(
-            name: "tbb",
+            name: "oneTBB",
             targets: ["OneTBB", "TBBMalloc", "TBBMallocProxy"])
     ],
     targets: [
