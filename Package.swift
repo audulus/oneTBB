@@ -3,7 +3,6 @@ import PackageDescription
 
 let package = Package(
     name: "oneTBB",
-    defaultLocalization: "en",
     platforms: [
         .macOS(.v11), .iOS(.v13)
     ],
@@ -21,7 +20,7 @@ let package = Package(
                 .target(name: "tbb_target"),
             ],
             path: ".",
-            exclude: ["src/tbbmalloc_proxy/tbbmalloc_proxy.rc", "src/tbbmalloc_proxy/CMakeLists.txt"],
+            exclude: ["examples", "src/tbbmalloc_proxy/tbbmalloc_proxy.rc", "src/tbbmalloc_proxy/CMakeLists.txt"],
             sources: ["src/tbbmalloc_proxy"],
             publicHeadersPath: "include",
             cxxSettings: [
@@ -37,7 +36,7 @@ let package = Package(
                 .target(name: "tbbmalloc_proxy_target"),
             ],
             path: ".",
-            exclude: ["src/tbbmalloc/tbbmalloc.rc", "src/tbbmalloc/def", "src/tbbmalloc/CMakeLists.txt"],
+            exclude: ["examples", "src/tbbmalloc/tbbmalloc.rc", "src/tbbmalloc/def", "src/tbbmalloc/CMakeLists.txt"],
             sources: ["src/tbbmalloc"],
             publicHeadersPath: ".",
             cxxSettings: [
@@ -50,7 +49,7 @@ let package = Package(
         .target(
             name: "tbb_target",
             path: ".",
-            exclude: ["src/tbb/tbb.rc", "src/tbb/CMakeLists.txt"],
+            exclude: ["examples", "src/tbb/tbb.rc", "src/tbb/CMakeLists.txt"],
             sources: ["src/tbb"],
             publicHeadersPath: "include",
             cxxSettings: [
